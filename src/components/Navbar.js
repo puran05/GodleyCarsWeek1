@@ -1,18 +1,41 @@
 import React from "react";
+import { ReactComponent as LogoIcon } from "../assets/favicon.svg";
+import { Link, Outlet } from "react-router-dom";
+import Services from "./Services";
 
 function Navbar() {
   return (
-    <div>
-      <nav className="bg-white shadow-sm p-3 drop-shadow-lg justify-center items-center">
-        <img src="favicon.ico" className="flex "></img>
-        <div className="flex px-10 space-x-7 text-lg justify-end items-center">
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">Inventory</a>
-          <a href="#">Contact</a>
+    <>
+      <div className="bg-custom-orange">
+        <p className="text-white text-center p-2 uppercase font-customFont tracking-widest">
+          View our inventory!Call us at today at 111-111-1111
+        </p>
+      </div>
+      <nav className="bg-white   p-3 drop-shadow-lg flex justify-between items-center">
+        <div className="flex items-start">
+          <LogoIcon className=" block h-15 w-15 " />
+        </div>
+        <div className="flex px-7 space-x-10 justify-end items-center font-customFont tracking-wide text-2xl">
+          <Link className="nav-link" to="/">
+            Home
+          </Link>
+          <Link className="nav-link" to="/services">
+            Services
+          </Link>
+          <Link className="nav-link" to="/inventory">
+            Inventory
+          </Link>
+          <Link className="nav-link" to="/contact">
+            Contact
+          </Link>
+
+          <button className="bg-custom-orange rounded-full px-5 py-3 text-white shadow-xl">
+            Call Us{" "}
+          </button>
         </div>
       </nav>
-    </div>
+      <Outlet />
+    </>
   );
 }
 

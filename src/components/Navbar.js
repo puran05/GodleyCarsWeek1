@@ -15,7 +15,7 @@ function Navbar() {
         <div className="flex items-start">
           <LogoIcon className=" block h-15 w-15 " />
         </div>
-        <div className="flex px-7 space-x-10 justify-end items-center font-customFont tracking-wide text-2xl">
+        <div className="flex px-7 space-x-10 justify-end items-center font-customFont tracking-wide sm:text-2xl text-sm">
           <Link className="nav-link" to="/">
             Home
           </Link>
@@ -29,7 +29,7 @@ function Navbar() {
             Contact
           </Link>
 
-          <button className="bg-custom-orange rounded-full px-5 py-3 text-white shadow-xl">
+          <button className="bg-custom-orange sm:rounded-full sm:px-5 sm:py-3 px-3 text-white shadow-xl">
             Call Us{" "}
           </button>
         </div>

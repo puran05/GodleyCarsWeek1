@@ -6,6 +6,7 @@ const carRoute = require("./routes/car.route.js");
 
 const app = express();
 
+//Middleware
 app.use(cors());
 app.use(express.json());
 

@@ -1,26 +1,29 @@
-const { MongoClient } = require("mongodb");
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const carRoute = require("./routes/car.route.js");
 
-// Replace the uri string with your connection string.
-const uri =
-  "mongodb+srv://admin:mYHLoGeDmM6CLrZr@backenddb.xcjrfhu.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB";
+const app = express();
 
-const client = new MongoClient(uri);
+app.use(cors());
+app.use(express.json());
 
-async function run() {
-  try {
-    const database = client.db("Node-API");
-    const movies = database.collection("products");
+app.use("/api/car", carRoute);
 
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { name: "juice" };
-    const movie = await movies.findOne(query);
+app.get("/", (req, res) => {
+  res.send("This is the front of the db  ");
+});
 
-    console.log(movie);
-  } catch (error) {
-    console.error("Error occurred while querying the database:", error);
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("Connected to the database");
+
+    app.listen(3001, () => {
+      console.log(`server is running on port 3001`);
+    });
+  })
+  .catch(() => {
+    console.log("Connection failed");
+  });

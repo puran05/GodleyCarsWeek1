@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import BannerImage from "../assets/servicesBanner.jpg";
 
 function Inventory() {
+  const [cars, setCars] = useState([]);
+  const [load, setLoading] = useState(true);
+
+  const fetchCars = async () => {
+    try {
+      const response = await axios.get("/api/cars");
+      setCars(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching the data", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
   return (
     <>
       {/* sale is happening now banner and the awards banner */}
@@ -53,82 +71,37 @@ function Inventory() {
 
         {/* Car cards */}
         <div className="flex flex-wrap justify-center mb-10">
-          <div className="w-full sm:w-1/4 rounded shadow-lg mx-3 mt-5 ">
-            <img src={BannerImage}></img>
-            <div className="py-4">
-              <div className="font-bold text-md uppercase text-left pl-6">
-                <span className="text-gray-500">2015</span> Buick Encore
+          {cars.map((car) => (
+            <div
+              key={car._id}
+              className="w-full sm:w-1/4 rounded shadow-lg mx-3 mt-5 "
+            >
+              <img src={BannerImage} alt={`${car.model} ${car.make}`}></img>
+              <div className="py-4">
+                <div className="font-bold text-md uppercase text-left pl-6">
+                  <span className="text-gray-500">{car.year}</span> {car.make}{" "}
+                  {car.model}
+                </div>
+              </div>
+              <div className="  pl-3 pr-6 pb-5 text-left">
+                <span className="inline-block  text-gray-600 px-3">
+                  Price: {car.price}
+                </span>
+                <span className="inline-block  text-gray-600 px-3">
+                  Mileage: {car.mileage}
+                </span>
+                <span className="inline-block  text-gray-600 px-3">
+                  Color: {car.color}
+                </span>
+              </div>
+              <hr />
+              <div className="text-left pl-3 py-10">
+                <span className="inline-block  text-gray-600 px-3">
+                  Status: Available
+                </span>
               </div>
             </div>
-            <div className="  pl-3 pr-6 pb-5 text-left">
-              <span className="inline-block  text-gray-600 px-3">
-                Price: 2000
-              </span>
-              <span className="inline-block  text-gray-600 px-3">
-                Mileage: Toyota
-              </span>
-              <span className="inline-block  text-gray-600 px-3">
-                Color: Corolla
-              </span>
-            </div>
-            <hr />
-            <div className="text-left pl-3 py-10">
-              <span className="inline-block  text-gray-600 px-3">
-                Status: Available
-              </span>
-            </div>
-          </div>
-
-          <div className=" w-full sm:w-1/4 rounded shadow-lg mx-3  mt-5">
-            <img src={BannerImage}></img>
-            <div className="py-4">
-              <div className="font-bold text-md uppercase text-left pl-6">
-                <span className="text-gray-500">2015</span> Buick Encore
-              </div>
-            </div>
-            <div className="  pl-3 pr-6 pb-5 text-left">
-              <span className="inline-block  text-gray-600 px-3">
-                Price: 2000
-              </span>
-              <span className="inline-block  text-gray-600 px-3">
-                Mileage: Toyota
-              </span>
-              <span className="inline-block  text-gray-600 px-3">
-                Color: Corolla
-              </span>
-            </div>
-            <hr />
-            <div className="text-left pl-3 pt-5">
-              <span className="inline-block  text-gray-600 px-3 py-10">
-                Status: Available
-              </span>
-            </div>
-          </div>
-          <div className="w-full sm:w-1/4 rounded shadow-lg mx-3 mt-5">
-            <img src={BannerImage}></img>
-            <div className="py-4">
-              <div className="font-bold text-md uppercase text-left pl-6">
-                <span className="text-gray-500">2015</span> Buick Encore
-              </div>
-            </div>
-            <div className="  pl-3 pr-6 pb-5 text-left">
-              <span className="inline-block  text-gray-600 px-3">
-                Price: 2000
-              </span>
-              <span className="inline-block  text-gray-600 px-3">
-                Mileage: Toyota
-              </span>
-              <span className="inline-block  text-gray-600 px-3">
-                Color: Corolla
-              </span>
-            </div>
-            <hr />
-            <div className="text-left pl-3 pt-5">
-              <span className="inline-block  text-gray-600 px-3 py-10">
-                Status: Available
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </>

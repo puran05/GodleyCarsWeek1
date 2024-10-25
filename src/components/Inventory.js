@@ -37,11 +37,11 @@ function Inventory() {
                 placeholder="Enter make model "
               ></input>
               <div
-                class="absolute inset-y-3 left-0 pl-3  
+                className="absolute inset-y-3 left-0 pl-3  
                     flex items-center  
                     pointer-events-none"
               >
-                <i class="fas fa-search text-gray-400"></i>
+                <i className="fas fa-search text-gray-400"></i>
               </div>
             </div>
             <button className="ml-3 px-4 py-3 border border-black text-lg">

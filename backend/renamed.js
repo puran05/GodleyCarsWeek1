@@ -1,7 +1,7 @@
 //use this file to add the cars to the inventory. Once the cars are updated then do node filename
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const Car = require("../backend/models/car.model"); // Make sure this points to the correct Car model
+const Car = require("./models/car.model"); // Make sure this points to the correct Car model
 
 dotenv.config();
 

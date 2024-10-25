@@ -6,6 +6,7 @@ import Contact from "./components/Contact";
 import Inventory from "./components/Inventory";
 import Services from "./components/Services";
 import Navbar from "./components/Navbar";
+import SecondTestfile from "./components/SecondTestfile";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/testfile" element={<SecondTestfile />} />
           </Route>
         </Routes>
       </Router>

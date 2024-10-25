@@ -16,7 +16,6 @@ function Services() {
           </p>
         </div>
       </section>
-
       {/* a short description section */}
       <section>
         <div className="flex flex-wrap">
@@ -53,8 +52,7 @@ function Services() {
           </div>
         </div>
       </section>
-
-      <section className="mt-10">
+      <section className="h-screen mt-10">
         <div className="flex flex-wrap justify-center space-y-6 gap-6 p-4">
           {/* Card 1 */}
           <div className="bg-white shadow-xl rounded-lg p-6 mt-5 m-2 w-full sm:w-1/4 ">
@@ -96,7 +94,7 @@ function Services() {
           </div>
         </div>
       </section>
-
+      ;
       <Footer />
     </div>
   );
